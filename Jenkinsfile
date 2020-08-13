@@ -35,7 +35,7 @@ pipeline {
           steps {
             sh 'mkdir archive'
             sh 'echo test > archive/test.txt'
-            zip zipFile: 'codechan_artifacts.zip', archive: false, dir: 'archive' 
+            zip zipFile: 'codechan_artifacts.zip', archive: false, dir: '.' 
             archiveArtifacts artifacts: 'codechan_artifacts.zip'
             sh 'ls'
           }
@@ -44,9 +44,16 @@ pipeline {
           environment {
             DOCKERCREDS = credentials('docker_login') //use the credentials just created in this stage
           }
+
+          when {
+            beforeAgent true
+            branch 'master'
+          }
+
           options {
             skipDefaultCheckout()
           }
+
           steps {
             unstash 'code' //unstash the repository code
             sh 'docker build -t bnjmlnk/codechan .'
