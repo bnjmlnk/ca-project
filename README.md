@@ -1,12 +1,12 @@
 # Keystone project
 
-## Jenkins Server access: http://35.190.219.154:8080
+### Jenkins Server access: http://35.190.219.154:8080
 ### Username: admin
 ### Password: adminpassword
 ### https://github.com/bnjmlnk/ca-project
 ### https://hub.docker.com/repository/docker/bnjmlnk/codechan
 
-#Note: We stopped the container because of problems with the Docker assignement. And now the pipeline has been reset... (Maybe not working)
+## Note: We stopped the container because of problems with the Docker assignement. And now the pipeline has been reset... (Maybe not working)
 
 This project is meant for you to make awesome software, with the skills in your Continuous Delivery and DevOps toolbox.
 Have fun, automate and be awesome!
