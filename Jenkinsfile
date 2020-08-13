@@ -26,12 +26,13 @@ pipeline {
             sh 'python tests.py'
           }
         }
-    stage('Paralel execution') {
+    stage('Parallel execution') {
       parallel {
         stage('Create artifact') {
           steps {
-            sh 'mkdir app/build/libs'
-            zip zipFile: 'codechan_artifacts.zip', archive: false, dir: 'app/build/libs' 
+            sh 'mkdir archive'
+            sh 'echo test > archive/test.txt'
+            zip zipFile: 'codechan_artifacts.zip', archive: false, dir: 'archive' 
             archiveArtifacts artifacts: 'codechan_artifacts.zip'
             sh 'ls'
           }
