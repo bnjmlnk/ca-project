@@ -3,6 +3,8 @@
 ## Jenkins Server access: http://35.190.219.154:8080
 ### Username: admin
 ### Password: adminpassword
+### https://github.com/bnjmlnk/ca-project
+### https://hub.docker.com/repository/docker/bnjmlnk/codechan
 
 This project is meant for you to make awesome software, with the skills in your Continuous Delivery and DevOps toolbox.
 Have fun, automate and be awesome!
