@@ -26,6 +26,18 @@ pipeline {
             sh 'python tests.py'
           }
         }
+    stage('Paralel execution') {
+      parallel {
+        stage('Create artifact') {
+          steps {
+            sh 'mkdir app/build/libs'
+            zip zipFile: 'codechan_artifacts.zip', archive: false, dir: 'app/build/libs' 
+            archiveArtifacts artifacts: 'codechan_artifacts.zip'
+            sh 'ls'
+          }
+        }
+      }
+    }    
 
   }
 }
