@@ -1,5 +1,8 @@
 pipeline {
   agent any
+  environment {
+    docker_username = 'bnjmlnk'
+  }
   stages {
     stage('Clone down') {
       steps {
@@ -38,7 +41,21 @@ pipeline {
           }
         }
       }
-    }    
+    }
+    stage('push docker') {
+      environment {
+        DOCKERCREDS = credentials('docker_login') //use the credentials just created in this stage
+      }
+      options {
+            skipDefaultCheckout()
+        }
+      steps {
+        unstash 'code' //unstash the repository code
+        sh 'ci/build-docker.sh'
+        sh 'echo "$DOCKERCREDS_PSW" | docker login -u "$DOCKERCREDS_USR" --password-stdin' //login to docker hub with the credentials above
+        sh 'ci/push-docker.sh'
+      }
+    }
 
   }
 }
